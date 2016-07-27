@@ -21,6 +21,17 @@ $ sudo apt install libgtk2.0-dev libtiff5-dev libgif-dev libjpeg-dev libpng12-de
 は、
 [[http://rubikitch.com/2016/07/26/emacs-251rc1/][るびきち「日刊Emacs」]]
 の記事で2016年7月24日にリリースされていたことを知った。
+*** DONE るびきちについて
+るびきちの全ての記事は
+#+BEGIN_SRC sh
+$ cd
+$ pwd
+/home/masakihiromoto 
+$ git clone --depth=1 git://github.com/rubikitch/daily-emacs-jp.git
+#+END_SRC
+で
+=~/daily-emacs-jp=
+に置いてある。
 ** DONE emacsのインストール
 #+BEGIN_SRC sh
 $ cd
@@ -37,20 +48,38 @@ $ make install -j4
 #+END_SRC
 
 =./configure --prefix=$HOME/local/emacs=
-のときに警告がでるなら、それを解消してから次に進んだほうがいい。
+のときに警告がでるなら、それを解消してから
+=make -j4=
+以降のコマンドを実行するべきである。
 
-*** るびきちについて
-るびきちの全ての記事は
+*** DONE バージョン確認
 #+BEGIN_SRC sh
-$ cd
-$ pwd
-/home/masakihiromoto 
-$ git clone --depth=1 git://github.com/rubikitch/daily-emacs-jp.git
+$ emacs --version
+GNU Emacs 25.1.1  
+Copyright (C) 2016 Free Software Foundation, Inc.
+GNU Emacs comes with ABSOLUTELY NO WARRANTY.
+You may redistribute copies of GNU Emacs
+under the terms of the GNU General Public License.
+For more information about these matters, see the file named COPYING.
 #+END_SRC
-で
-=~/daily-emacs-jp=
-に置いてある。
-** gitにバックアップを取る
+
+前のバージョンではあるが、
+=emacs24.5.1=
+の日本語マニュアルは[[https://ayatakesi.github.io/emacs/24.5/emacs.html][
+ここ]]
+にある。
+
+** githubにバックアップを取る
+*** DONE 前提条件
+- gitコマンドが使える
+- githubのアカウントを取得している
+*** 新規登録
+
+*** 更新
+
+**** .gitignoreによってバックアップ対象外になったファイルのgithubからの削除
+
+*** githubからの複製
 
 * emacsの設定
 
