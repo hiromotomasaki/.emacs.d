@@ -1,7 +1,8 @@
-#+OPTION: \n:nil
+#+OPTION: \n:t
 
 * 環境
 $ cat /etc/lsb-release
+
 
 DISTRIB_ID=Ubuntu
 
