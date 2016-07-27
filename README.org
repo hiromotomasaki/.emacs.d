@@ -1,27 +1,6 @@
-* 見出し1
-** 見出し2
-*** 見出し3
-**** 見出し4
-***** 見出し5
-****** 見出し6
-- 箇条書きリスト
-- 箇条書きリスト
-  + ネストした箇条書きリスト
-  + ネストした箇条書きリスト
-
-1. 番号リスト
-2. 番号リスト
-
-
-| A | B | C |
-|---+---+---|
-| a | b | c |
-
-
-
 * 環境
-$ cat /etc/lsb-release
-DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=16.04
-DISTRIB_CODENAME=xenial
-DISTRIB_DESCRIPTION="Ubuntu 16.04.1 LTS"
+$ cat /etc/lsb-release\\
+DISTRIB_ID=Ubuntu\\
+DISTRIB_RELEASE=16.04\\
+DISTRIB_CODENAME=xenial\\
+DISTRIB_DESCRIPTION="Ubuntu 16.04.1 LTS"\\
