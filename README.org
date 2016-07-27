@@ -1,8 +1,17 @@
-#+OPTION: \n:t
+#+OPTION: \n:nil
 
 * 環境
-$ cat /etc/lsb-release
+#+BEGIN_SRC sh
+cat /etc/lsb-release
+cat /etc/lsb-release
 
+cat /etc/lsb-release
+
+
+
+cat /etc/lsb-release
+#+END_SRC
+$ cat /etc/lsb-release
 
 DISTRIB_ID=Ubuntu
 
