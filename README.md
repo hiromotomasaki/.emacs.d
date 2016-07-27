@@ -72,7 +72,7 @@ $ git clone https://github.com/hiromotomasaki/.emacs.d
 # emacsの設定
 参考 : http://tarao.hatenablog.com/entry/20150221/1424518030  
 
-## .emacs.d内のフォルダの作成
+## .emacs.d内のフォルダ・ファイルの作成
 $ cd  
 $ pwd  
 /home/masakihiromoto  
@@ -141,7 +141,9 @@ $ tree -la
 
 24 directories, 27 files  
 
-
+# init.elの記述  
+el-getとinit-loaderに関する記述をする。  
+el-getはパッケージ管理、init-loaderはファイル分割の役割を持つ。  
 
 
 
