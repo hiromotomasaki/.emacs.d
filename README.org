@@ -1,22 +1,29 @@
-#+OPTION: \n:nil
-
 * 環境
+私の環境は
 #+BEGIN_SRC sh
-cat /etc/lsb-release
-cat /etc/lsb-release
-
-cat /etc/lsb-release
-
-
-
-cat /etc/lsb-release
-#+END_SRC
 $ cat /etc/lsb-release
-
 DISTRIB_ID=Ubuntu
-
 DISTRIB_RELEASE=16.04
-
 DISTRIB_CODENAME=xenial
-
 DISTRIB_DESCRIPTION="Ubuntu 16.04.1 LTS"
+#+END_SRC
+である。
+
+ただし、emacs24.5.1を導入した時に
+#+BEGIN_SRC sh
+$ sudo apt install libgtk2.0-dev libtiff5-dev libgif-dev libjpeg-dev libpng12-dev libxpm-dev libncurses-dev
+#+END_SRC
+としている。
+
+* emacsの導入
+これから入れる=emacs25.1.1=は、
+[[http://rubikitch.com/2016/07/26/emacs-251rc1/][るびきち「日刊Emacs」]]
+の記事で2016年7月24日にリリースされていたことを知った。
+
+** emacsのインストール
+
+** gitにバックアップを取る
+
+* emacsの設定
+
+
