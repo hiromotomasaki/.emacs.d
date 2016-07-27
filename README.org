@@ -1,4 +1,4 @@
-* 環境
+* DONE 環境
 私の環境は
 #+BEGIN_SRC sh
 $ cat /etc/lsb-release
@@ -21,7 +21,7 @@ $ sudo apt install libgtk2.0-dev libtiff5-dev libgif-dev libjpeg-dev libpng12-de
 は、
 [[http://rubikitch.com/2016/07/26/emacs-251rc1/][るびきち「日刊Emacs」]]
 の記事で2016年7月24日にリリースされていたことを知った。
-** emacsのインストール
+** DONE emacsのインストール
 #+BEGIN_SRC sh
 $ cd
 $ pwd
