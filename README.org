@@ -146,3 +146,5 @@ $ touch init.el
 である。
 
 
+** init.elへの記述
+主にel-getとinit-loaderに関する記述を行う。
