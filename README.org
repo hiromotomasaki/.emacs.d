@@ -1,3 +1,6 @@
+(add-hook 'org-export-html-final-hook
+          '(lambda () (perform-replace "@&amp;" "&" nil nil nil)))
+
 * DONE 環境
 私の環境は
 #+BEGIN_SRC sh
