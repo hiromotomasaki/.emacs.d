@@ -115,6 +115,182 @@ $ git clone https://github.com/hiromotomasaki/.emacs.d
   + /npm-debug.log
 - 特定のディレクトリを無視(先頭と末尾に/)
   + / bin/ (/とbの間は詰める)
+* DONE tmuxの導入
+GNU screenでもいいけれど、ターミナルを複数使うこともあるのでtmuxを利用する。
+#+BEGIN_SRC sh
+$ sudo apt install tmux
+#+END_SRC
+tmuxのマニュアルは
+[[http://manpages.ubuntu.com/manpages/precise/man1/tmux.1.html][ここ]]
+を参照すること。
+また、tmuxの概念は
+[[http://kanjuku-tomato.blogspot.jp/2014/02/tmux.html][ここ]]
+を参照すること。
+** 設定
+*** 基本
+**** prefixキーの変更
+#+BEGIN_SRC sh
+unbind-key C-b
+set-option -g prefix C-z
+bind-key C-z send-prefix
+#+END_SRC
+**** ^ + r でtmuxの設定を更新する
+#+BEGIN_SRC sh
+unbind-key r
+bind r source-file ~/.tmux.conf
+#+END_SRC
+**** 日本語環境の設定
+#+BEGIN_SRC sh
+setw -g utf8 on
+set -g status-utf8 on
+set-window-option -g utf8 on
+#+END_SRC
+**** マウス操作を有効にする
+#+BEGIN_SRC sh
+setw -g mouse
+#+END_SRC
+*** 外観
+#+BEGIN_SRC sh
+# ステータスバー
+set-option -g status-utf8 on        # ステータスバーを Utf-8 に対応
+set-option -g status-interval 1     # ステータスバーを1秒毎に描画し直す
+set-option -g status-justify centre # センタライズ（主にウィンドウ番号など）
+set-option -g status-position top   # ステータスバーをトップに配置する
+set-option -g status-left-length 90
+set-option -g status-right-length 90
+set-option -g status-left '#[fg=cyan,bg=#303030]#{?client_prefix,#[reverse],} #H[#I][#P][#S] #[default]' # Prefixキーを押した時に視覚的に確認できるようにする
+set-option -g status-right '[%y-%m-%d(%a) %H:%M]'
+set -g status-bg black
+set -g status-fg white
+set -g message-fg white
+set -g message-bg red
+
+# window
+set-window-option -g mode-bg white
+set-window-option -g mode-fg black
+set-window-option -g window-status-fg white
+set-window-option -g window-status-bg black
+set-window-option -g window-status-current-bg black
+set-window-option -g window-status-current-fg green
+
+# pane
+set  -g pane-active-border-fg cyan
+set  -g pane-active-border-bg black
+setw -g window-status-current-fg blue
+
+# color
+set-option -g default-terminal xterm-256color
+#+END_SRC
+
+*** キーバインド
+**** 横分割
+unbind 2
+
+bind 2 split-window -v
+**** 縦分割
+unbind 3
+
+bind 3 split-window -h
+**** カレントペインの削除
+unbind k
+
+bind k kill-pane
+**** カレントウィンドウの削除
+unbind K
+
+bind K kill-window
+**** keybind一覧(終了はq)
+unbind ?
+
+bind ? list-keys
+**** コピーモード時にemacsのキーバインドを利用する
+set-window-option -g mode-keys emacs
+**** コピーモードのコピー結果をクリップボードに渡す(#xselをインストールしておく必要あり)
+unbind -t emacs-copy M-w
+
+unbind -t emacs-copy C-w
+
+bind-key -t emacs-copy M-w copy-pipe "xsel -bi"
+
+bind-key -t emacs-copy C-w copy-pipe "xsel -bi"
+**** マウスでコピーアンドペースト用のウィンドウが出てくる(外部でコピーしたものをペーストする方法がわからないので、これで代用する。)
+bind-key -t emacs-copy Enter copy-pipe "cat | xsel -i --clipboard"
+** 概念
+詳しくは
+[[http://kanjuku-tomato.blogspot.jp/2014/02/tmux.html][tmuxを使い始めたので基本的な機能の使い方とかを整理してみた]]
+を見ること。
+
+セッションはプロジェクト単位である。
+セッションは一時的にコンソールから切り離してバックグラウンドで残しておいて後から繋ぎ直す、といったことができる。
+
+ウィンドウとペインの違い
+- あるウィンドウ上のすべてのペインに対して一斉入力可能
+
+** 使い方
+セッション(Session)とは何か
+- tmuxを起動すると生成されるtmuxの管理プロセス。なので、ひとつのサーバーに対して1つ?
+ウインドウ(Window)とは何か
+- 1つの仮想端末
+
+私の使い方
+- セッションはプロジェクト単位で使う
+- ウィンドウはemacs起動用、その他用に分ける
+- その他用の方で複数のペインを利用する
+*** セッションに対して
+**** 新規セッション開始
+tmux new -s ProjectA
+**** 今のセッションをデタッチ
+^ d
+**** 新規セッション開始
+tmux new -s ProjectB
+**** 今のセッションをデタッチ
+^ d
+**** 現在のセッションリストの表示
+tmux ls
+**** ProjectBのセッションを終了する
+tmux kill-session -t ProjectB
+
+(すべてのセッションを終了するときにはtmux kill-serverとする)
+**** ProjectAのセッションにアタッチする
+tmux a -t ProjectA
+**** ProjectAの名前の変更
+tmux rename -t ProjectA Project
+*** ウィンドウ・ペインに対して
+**** 0番目のウィンドウの名前の変更
+^ ,
+
+Emacs
+**** ウィンドウの新規作成
+^ c
+**** 今作成した1番目のウィンドウの名前の変更
+^ ,
+
+Other
+**** ウィンドウの移動
+^ w
+**** ペインの作成(横分割)
+^ 2
+**** ペインの作成(縦分割)
+^ 3
+**** ペイン番号の確認
+^ q
+**** 現在のペインの終了
+^ k
+**** 現在のウィンドウの終了
+^ K
+**** コピー
+***** コピーモードに入る
+^ [
+***** 範囲選択開始
+C-@
+***** コピー
+M-w
+**** ペースト
+***** ターミナル上でコピーしたコピーバッファのものを貼り付ける
+^ ]
+***** ターミナル外でコピーしたコピーバッファのものを貼り付ける
+マウスの右キリックで貼り付けを選択する
+
 * emacsの設定
 emacsのパッケージ管理・ディレクトリ構造は
 [[http://tarao.hatenablog.com/entry/20150221/1424518030][ここ]]
@@ -144,7 +320,17 @@ $ touch init.el
 6 directories, 3 files
 #+END_SRC
 である。
-
-
 ** init.elへの記述
 主にel-getとinit-loaderに関する記述を行う。
+** 分割ファイルの作り方
+例えば
+=keybind.el=
+を
+=init/keybind.el=
+に作成する場合
+#+BEGIN_SRC sh
+$ cd ~/.emacs.d/init-loader
+$ touch ./../init/hoge.el
+$ ln -s -v ./../init/keybind.el ./99_keybind.el
+#+END_SRC
+keybindのF5にeval-bufferを割り当てておいたので、init.elの再評価はF5を押せば良い
