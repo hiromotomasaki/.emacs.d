@@ -15,7 +15,7 @@ $ sudo apt install libgtk2.0-dev libtiff5-dev libgif-dev libjpeg-dev libpng12-de
 #+END_SRC
 としている。
 
-* emacsの導入
+* DONE emacsの導入
 これから入れる
 =emacs25.1.1=
 は、
@@ -107,7 +107,7 @@ $ pwd
 /home/masakihiromoto
 $ git clone https://github.com/hiromotomasaki/.emacs.d
 #+END_SRC
-*** .gitignoreの書き方
+*** DONE .gitignoreの書き方
 .gitignoreにはgithubにバックアップを取らないファイル・ディレクトリを書く。
 - 特定の拡張子を無視
   + *.o
@@ -116,5 +116,33 @@ $ git clone https://github.com/hiromotomasaki/.emacs.d
 - 特定のディレクトリを無視(先頭と末尾に/)
   + / bin/ (/とbの間は詰める)
 * emacsの設定
+emacsのパッケージ管理・ディレクトリ構造は
+[[http://tarao.hatenablog.com/entry/20150221/1424518030][ここ]]
+を参考にEl-Getを利用する。
+実際にパッケージを利用するときは
+[[http://qiita.com/kai2nenobu/items/5dfae3767514584f5220][ここ]]
+を参考にして、積極的にuse-packageを利用する。
+** .emacs.d内のフォルダ・ファイルの作成
+#+BEGIN_SRC sh
+$ cd ~/.emacs.d
+$ mkdir init-loader init insert recipes
+$ touch init.el
+#+END_SRC
+この時点でのフォルダの構成は
+#+BEGIN_SRC sh
+.
+├── .git
+├── .gitignore
+├── README.org
+├── auto-save-list
+├── init
+├── init-loader
+├── init.el
+├── insert
+└── recipes
+
+6 directories, 3 files
+#+END_SRC
+である。
 
 
