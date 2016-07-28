@@ -1,6 +1,3 @@
-(add-hook 'org-export-html-final-hook
-          '(lambda () (perform-replace "@&amp;" "&" nil nil nil)))
-
 * DONE 環境
 私の環境は
 #+BEGIN_SRC sh
@@ -114,10 +111,10 @@ $ git clone https://github.com/hiromotomasaki/.emacs.d
 .gitignoreにはgithubにバックアップを取らないファイル・ディレクトリを書く。
 - 特定の拡張子を無視
   + *.o
-- 特定のファイルを無視(先頭に&#47;)
-  + &#47;npm-debug.log
-- 特定のディレクトリを無視(先頭と末尾に&#47;)
-  + &#47;bin&#47;
+- 特定のファイルを無視(先頭に/)
+  + /npm-debug.log
+- 特定のディレクトリを無視(先頭と末尾に/)
+  + / bin/ (/とbの間は詰める)
 * emacsの設定
 
 
