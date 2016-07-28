@@ -114,7 +114,7 @@ $ git clone https://github.com/hiromotomasaki/.emacs.d
 - 特定のファイルを無視(先頭に/)
   + /npm-debug.log
 - 特定のディレクトリを無視(先頭と末尾に/)
-  + /bin/
+  + /bin@F20
 * emacsの設定
 
 
