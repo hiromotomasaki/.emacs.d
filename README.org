@@ -69,18 +69,52 @@ For more information about these matters, see the file named COPYING.
 ここ]]
 にある。
 
-** githubにバックアップを取る
+** DONE githubにバックアップを取る
 *** DONE 前提条件
 - gitコマンドが使える
 - githubのアカウントを取得している
-*** 新規登録
-
-*** 更新
-
-**** .gitignoreによってバックアップ対象外になったファイルのgithubからの削除
-
-*** githubからの複製
-
+*** DONE 新規登録
+#+BEGIN_SRC sh
+$ cd ~/.emacs.d
+$ git initi
+$ touch README.org .gitignore
+$ git add .
+$ git commit -m 'commit'
+#+END_SRC
+githubのページでリポジトリを作成してアドレスを取得
+#+BEGIN_SRC sh
+$ git remote add origin https://github.com/hiromotomasaki/.emacs.d.git
+$ git push -u origin master
+#+END_SRC
+*** DONE 更新
+**** DONE 通常の更新
+#+BEGIN_SRC sh
+$ git add .
+$ git commit -m 'commit'
+$ git push
+#+END_SRC
+**** DONE .gitignoreによってバックアップ対象外になったファイルをgithubからの削除することも含む更新
+#+BEGIN_SRC sh
+$ git rm --cached -r .
+$ git add -A .
+$ git commit -m "commit"
+$ git push
+#+END_SRC
+*** DONE githubからの複製
+#+BEGIN_SRC sh
+$ cd
+$ pwd
+/home/masakihiromoto
+$ git clone https://github.com/hiromotomasaki/.emacs.d
+#+END_SRC
+*** .gitignoreの書き方
+.gitignoreにはgithubにバックアップを取らないファイル・ディレクトリを書く。
+- 特定の拡張子を無視
+  + *.o
+- 特定のファイルを無視(先頭に/)
+  + /npm-debug.log
+- 特定のディレクトリを無視(先頭と末尾に/)
+  + /bin/
 * emacsの設定
 
 
