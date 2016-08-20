@@ -1,0 +1,26 @@
+# メモ
+## keybind.el(OK)
+F5で更新ができるように設定
+## googletranslate.el
+翻訳
+## websearch.el
+ウェブ検索
+## origami.el
+コード折りたたみ
+## undotree.el
+やり直し
+## cpp.el
+c++
+## tex.el
+tex
+## xml.el
+xml
+## basic.el
+基本設定
+## custom.el
+M-x customize で設定できるもの
+## fix.el
+よくわからない
+## appearance.el
+表示関係
+
